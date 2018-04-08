@@ -25,11 +25,7 @@ public class AnswerTest {
     String expectValue = "0A0B";
 
     //then
-    Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
-    Record result = answer.check(inputAnswer);
-    int[] existRecord = result.getValue();
-    String res = String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
-    assertThat(res, is(expectValue));
+    validateInputAnswerStr(inputAnswerStr,expectValue);
   }
 
   @Test
@@ -39,11 +35,7 @@ public class AnswerTest {
     String expectValue = "4A0B";
 
     //then
-    Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
-    Record result = answer.check(inputAnswer);
-    int[] existRecord = result.getValue();
-    String res = String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
-    assertThat(res, is(expectValue));
+    validateInputAnswerStr(inputAnswerStr,expectValue);
   }
 
   @Test
@@ -53,11 +45,7 @@ public class AnswerTest {
     String expectValue = "0A0B";
 
     //then
-    Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
-    Record result = answer.check(inputAnswer);
-    int[] existRecord = result.getValue();
-    String res = String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
-    assertThat(res, is(expectValue));
+    validateInputAnswerStr(inputAnswerStr,expectValue);
   }
 
   @Test
@@ -67,6 +55,10 @@ public class AnswerTest {
     String expectValue = "1A1B";
 
     //then
+    validateInputAnswerStr(inputAnswerStr,expectValue);
+  }
+
+  private void validateInputAnswerStr(String inputAnswerStr,String expectValue) {
     Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
     Record result = answer.check(inputAnswer);
     int[] existRecord = result.getValue();
