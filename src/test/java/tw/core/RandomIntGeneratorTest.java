@@ -12,7 +12,7 @@ import tw.core.generator.RandomIntGenerator;
 public class RandomIntGeneratorTest {
 
   @Test(expected = IllegalArgumentException.class)
-  public void should_throw_IllegalArgumentException_when_digitmax_more_than_numbersOfNeed() {
+  public void should_throw_IllegalArgumentException_when_digitmax_more_than_numbersOfNeed() throws IllegalArgumentException {
     RandomIntGenerator randomIntGenerator = new RandomIntGenerator();
     randomIntGenerator.generateNums(3, 4);
   }
