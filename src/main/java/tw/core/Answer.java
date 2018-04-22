@@ -14,26 +14,29 @@ import static java.lang.Integer.parseInt;
  */
 public class Answer {
 
+    private static final String SPACE = " ";
+    public static final String ANSWER_INCORRECT = "Answer format is incorrect";
     private List<String> numList;
 
     public void setNumList(List<String> numList) {
         this.numList = numList;
     }
 
+    public Answer(List<String> numList) {
+        this.numList = numList;
+    }
+
     public static Answer createAnswer(String inputStr) {
-        Answer answer = new Answer();
-        List<String> inputList = Arrays.stream(inputStr.split(" ")).collect(Collectors.toList());
-        answer.setNumList(inputList);
-        return answer;
+        List<String> inputList = Arrays.stream(inputStr.split(SPACE)).collect(Collectors.toList());
+        return new Answer(inputList);
     }
 
     public void validate() throws OutOfRangeAnswerException {
-        long validatedNum = numList.stream()
-                .map(num -> parseInt(num))
+        if (numList.size() > numList.stream()
+                .map(Integer::parseInt)
                 .distinct()
-                .filter(num -> num < 10).count();
-        if (validatedNum < numList.size()) {
-            throw new OutOfRangeAnswerException("Answer format is incorrect");
+                .filter(num -> num < 10).count()) {
+            throw new OutOfRangeAnswerException(ANSWER_INCORRECT);
         }
     }
 
@@ -41,12 +44,11 @@ public class Answer {
         Record record = new Record();
         this.numList.forEach(num -> {
             int index = inputAnswer.getIndexOfNum(num);
-            if (index != -1) {
-                if (index == getIndexOfNum(num)) {
-                    record.increaseCurrentNum();
-                } else {
-                    record.increaseIncludeOnlyNum();
-                }
+            if (index == -1) return;
+            if (index == getIndexOfNum(num)) {
+                record.increaseCurrentNum();
+            } else {
+                record.increaseIncludeOnlyNum();
             }
         });
         return record;
@@ -58,6 +60,6 @@ public class Answer {
 
     @Override
     public String toString() {
-        return String.join(" ", numList);
+        return String.join(SPACE, numList);
     }
 }

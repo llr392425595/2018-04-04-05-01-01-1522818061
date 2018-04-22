@@ -3,7 +3,10 @@ package tw.core;
 
 import static junit.framework.TestCase.assertTrue;
 
+import java.util.concurrent.ExecutionException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import tw.core.generator.RandomIntGenerator;
 
 /**
@@ -11,8 +14,13 @@ import tw.core.generator.RandomIntGenerator;
  */
 public class RandomIntGeneratorTest {
 
-  @Test(expected = IllegalArgumentException.class)
-  public void should_throw_IllegalArgumentException_when_digitmax_more_than_numbersOfNeed() throws IllegalArgumentException {
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
+
+  @Test
+  public void should_throw_IllegalArgumentException_when_digitmax_less_than_numbersOfNeed() {
+    thrown.expect(IllegalArgumentException.class);
+    thrown.expectMessage("Can't ask for more numbers than are available");
     RandomIntGenerator randomIntGenerator = new RandomIntGenerator();
     randomIntGenerator.generateNums(3, 4);
   }

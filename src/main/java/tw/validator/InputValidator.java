@@ -19,7 +19,7 @@ public class InputValidator {
 
     private boolean validateSingleDigit(List<String> numList, int numCount) {
         return numList.stream()
-                .map(num -> parseInt(num))
+                .map(Integer::parseInt)
                 .distinct()
                 .filter(num -> num < 10).count() == numCount;
     }
