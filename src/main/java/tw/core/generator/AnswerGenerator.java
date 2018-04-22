@@ -8,17 +8,19 @@ import tw.core.exception.OutOfRangeAnswerException;
  * Created by jxzhong on 2017/5/17.
  */
 public class AnswerGenerator {
+
+    private static final int DIGIT_MAX = 9;
+    private static final int NUMBERS_OF_NEED = 4;
     private final RandomIntGenerator randomIntGenerator;
 
     @Inject
-    public AnswerGenerator(RandomIntGenerator randomIntGenerator) {
+    AnswerGenerator(RandomIntGenerator randomIntGenerator) {
         this.randomIntGenerator = randomIntGenerator;
     }
 
     public Answer generate() throws OutOfRangeAnswerException {
-        String RandomNumStr = this.randomIntGenerator.generateNums(9, 4);
-        Answer answer = Answer.createAnswer(RandomNumStr);
-        answer.validate();
-        return answer;
+        String RandomNumStr = this.randomIntGenerator.generateNums(DIGIT_MAX, NUMBERS_OF_NEED);
+        Answer.createAnswer(RandomNumStr).validate();
+        return Answer.createAnswer(RandomNumStr);
     }
 }
