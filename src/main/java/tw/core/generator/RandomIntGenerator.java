@@ -3,27 +3,26 @@ package tw.core.generator;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 /**
  * Created by jxzhong on 2017/5/17.
  */
 public class RandomIntGenerator {
 
-    public RandomIntGenerator() {
-    }
+    private static final String EXCEPTION_MESSAGE = "Can't ask for more numbers than are available";
+    private static final String SPACE = " ";
 
-    public String generateNums(Integer digitmax, Integer numbersOfNeed) {
+    public RandomIntGenerator() {}
 
-        if (digitmax < numbersOfNeed) {
-            throw new IllegalArgumentException("Can't ask for more numbers than are available");
+    public String generateNums(Integer digitMax, Integer numbersOfNeed) {
+        if (digitMax < numbersOfNeed) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
-
-        Random rng = new Random();
         Set<String> generated = new LinkedHashSet<>();
         while (generated.size() < numbersOfNeed) {
-            Integer next = rng.nextInt(digitmax);
-            generated.add(next.toString());
+            generated.add(((Integer) new Random().nextInt(digitMax)).toString());
         }
-        return String.join(" ", generated);
+        return String.join(SPACE, generated);
     }
 }
