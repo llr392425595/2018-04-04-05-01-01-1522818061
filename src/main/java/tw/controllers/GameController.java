@@ -26,10 +26,8 @@ public class GameController {
     }
 
     public void play(InputCommand command) throws IOException {
-
         if (game.checkCoutinue()) {
-            GuessResult guessResult = game.guess(command.input());
-            gameView.showGuessResult(guessResult);
+            gameView.showGuessResult(game.guess(command.input()));
             gameView.showGuessHistory(game.guessHistory());
             play(command);
         } else {
