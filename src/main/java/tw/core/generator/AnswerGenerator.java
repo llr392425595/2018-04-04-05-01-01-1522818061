@@ -20,7 +20,8 @@ public class AnswerGenerator {
 
     public Answer generate() throws OutOfRangeAnswerException {
         String RandomNumStr = this.randomIntGenerator.generateNums(DIGIT_MAX, NUMBERS_OF_NEED);
-        Answer.createAnswer(RandomNumStr).validate();
-        return Answer.createAnswer(RandomNumStr);
+        Answer answer = Answer.createAnswer(RandomNumStr);
+        answer.validate();
+        return answer;
     }
 }
