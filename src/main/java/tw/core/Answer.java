@@ -15,7 +15,7 @@ import static java.lang.Integer.parseInt;
 public class Answer {
 
     private static final String SPACE = " ";
-    public static final String ANSWER_INCORRECT = "Answer format is incorrect";
+    private static final String ANSWER_INCORRECT = "Answer format is incorrect";
     private List<String> numList;
 
     public void setNumList(List<String> numList) {
@@ -54,7 +54,7 @@ public class Answer {
         return record;
     }
 
-    public int getIndexOfNum(String num) {
+    private int getIndexOfNum(String num) {
         return this.numList.indexOf(num);
     }
 
