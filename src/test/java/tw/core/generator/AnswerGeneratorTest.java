@@ -41,6 +41,39 @@ public class AnswerGeneratorTest {
   }
 
   @Test
+  public void should_throw_outOfRangeAnswerException_when_digit_number_more_than_4()
+      throws OutOfRangeAnswerException {
+    thrown.expect(OutOfRangeAnswerException.class);
+    thrown.expectMessage("Answer format is incorrect");
+    when(mockedRandomIntGenerator.generateNums(anyInt(), anyInt())).thenReturn("1 2 3 4 5");
+
+    AnswerGenerator answerGenerator = new AnswerGenerator(mockedRandomIntGenerator);
+    Answer answer = answerGenerator.generate();
+  }
+
+  @Test
+  public void should_throw_outOfRangeAnswerException_when_digit_number_less_than_4()
+      throws OutOfRangeAnswerException {
+    thrown.expect(OutOfRangeAnswerException.class);
+    thrown.expectMessage("Answer format is incorrect");
+    when(mockedRandomIntGenerator.generateNums(anyInt(), anyInt())).thenReturn("1 2 3");
+
+    AnswerGenerator answerGenerator = new AnswerGenerator(mockedRandomIntGenerator);
+    Answer answer = answerGenerator.generate();
+  }
+
+  @Test
+  public void should_throw_outOfRangeAnswerException_when_have_same_digit()
+      throws OutOfRangeAnswerException {
+    thrown.expect(OutOfRangeAnswerException.class);
+    thrown.expectMessage("Answer format is incorrect");
+    when(mockedRandomIntGenerator.generateNums(anyInt(), anyInt())).thenReturn("1 2 2 3 4");
+
+    AnswerGenerator answerGenerator = new AnswerGenerator(mockedRandomIntGenerator);
+    Answer answer = answerGenerator.generate();
+  }
+
+  @Test
   public void should_return_a_numList()
       throws OutOfRangeAnswerException {
 
