@@ -13,8 +13,7 @@ public class InputValidator {
     public Boolean validate(String numStr) {
         List<String> numList = numStrToList(numStr);
         int NumCount = 4;
-        Boolean isValidate = validateDigitsCount(numList, NumCount);
-        return isValidate && validateSingleDigit(numList, NumCount);
+        return validateDigitsCount(numList, NumCount) && validateSingleDigit(numList, NumCount);
     }
 
     private boolean validateSingleDigit(List<String> numList, int numCount) {
