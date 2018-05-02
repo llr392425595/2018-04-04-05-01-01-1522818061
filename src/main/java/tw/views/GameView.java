@@ -12,11 +12,7 @@ import java.util.List;
  */
 public class GameView {
 
-    private BufferedReader bufferedReader;
-
-    {
-        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    }
+    private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public void showGuessResult(GuessResult guessResult) {
         System.out.println("Guess Result: " + guessResult.getResult());
@@ -28,7 +24,7 @@ public class GameView {
 
     public void showGuessHistory(List<GuessResult> guessResults) {
         System.out.println("Guess History:");
-        guessResults.stream().forEach(guessResult -> {
+        guessResults.forEach(guessResult -> {
             System.out.println(String.format("[Guess Numbers: %1$s, Guess Result: %2$s]",
                     guessResult.getInputAnswer().toString(),
                     guessResult.getResult()));
