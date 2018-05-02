@@ -48,4 +48,10 @@ public class InputValidatorTest {
     assertFalse(result);
   }
 
+  @Test
+  public void should_get_false_when_have_repeate_digit() {
+    boolean result = inputValidator.validate("1 2 3 4 4");
+    assertFalse(result);
+  }
+
 }
