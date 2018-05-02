@@ -7,6 +7,7 @@ import tw.core.model.GuessResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import tw.core.model.Record;
 
 import static tw.core.GameStatus.CONTINUE;
 import static tw.core.GameStatus.FAIL;
@@ -29,8 +30,8 @@ public class Game {
     }
 
     public GuessResult guess(Answer inputAnswer) {
-        final int[] existRecord = actualAnswer.check(inputAnswer).getValue();
-        String result = String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
+        Record existRecord = actualAnswer.check(inputAnswer);
+        String result = existRecord.toString();
         GuessResult guessResult = new GuessResult(result, inputAnswer);
         guessResults.add(guessResult);
         return guessResult;
